@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MADEBYLIAM - Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;800;900&family=Archivo:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== RESET & BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Palette */
+            --color-black: #000000;
+            --color-dark: #0a0a0a;
+            --color-gray-900: #111111;
+            --color-gray-800: #1a1a1a;
+            --color-gray-700: #2a2a2a;
+            --color-gray-600: #404040;
+            --color-gray-500: #666666;
+            --color-gray-400: #999999;
+            --color-gray-300: #cccccc;
+            --color-gray-200: #e5e5e5;
+            --color-gray-100: #f5f5f5;
+            --color-white: #ffffff;
+            
+            /* Blue Accents */
+            --color-blue-primary: #3b82f6;
+            --color-blue-light: #60a5fa;
+            --color-blue-dark: #2563eb;
+            --color-blue-glow: rgba(59, 130, 246, 0.4);
+            --color-blue-subtle: rgba(59, 130, 246, 0.1);
+            
+            /* Typography */
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-heading: 'Archivo', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --spacing-3xl: 6rem;
+            --spacing-4xl: 8rem;
+            
+            /* Layout */
+            --max-width: 1400px;
+            --nav-height: 80px;
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-base: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.4);
+            --shadow-blue: 0 8px 32px var(--color-blue-glow);
+            
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 9999px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-black);
+            color: var(--color-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-gray-900);
+            transition: all var(--transition-base);
+        }
+
+        .nav-wrapper.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            box-shadow: var(--shadow-lg);
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            letter-spacing: 0.05em;
+            color: var(--color-white);
+            text-decoration: none;
+            position: relative;
+            transition: all var(--transition-base);
+        }
+
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-blue-primary), var(--color-blue-light));
+            transition: width var(--transition-smooth);
+        }
+
+        .nav-logo:hover::after {
+            width: 100%;
+        }
+
+        .nav-logo:hover {
+            color: var(--color-blue-light);
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xl);
+            list-style: none;
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--color-gray-300);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all var(--transition-base);
+            padding: var(--spacing-xs) 0;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--color-blue-primary);
+            transition: width var(--transition-smooth);
+        }
+
+        .nav-link:hover {
+            color: var(--color-white);
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--color-blue-primary);
+        }
+
+        .nav-cta {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: linear-gradient(135deg, var(--color-blue-primary), var(--color-blue-dark));
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all var(--transition-smooth);
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-blue);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px var(--color-blue-glow);
+            border-color: var(--color-blue-light);
+        }
+
+        .nav-cta:active {
+            transform: translateY(-1px);
+        }
+
+        /* Mobile Menu Toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: var(--spacing-xs);
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--color-white);
+            transition: all var(--transition-base);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: var(--nav-height);
+        }
+
+        /* Animated Background Grid */
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(var(--color-white) 1px, transparent 1px),
+                linear-gradient(90deg, var(--color-white) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* Gradient Orbs */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: orbFloat 8s ease-in-out infinite;
+        }
+
+        .hero-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--color-blue-primary), transparent);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .hero-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--color-blue-light), transparent);
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .hero-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--color-blue-dark), transparent);
+            top: 50%;
+            right: 30%;
+            animation-delay: 4s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+
+        /* Hero Content */
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: var(--max-width);
+            padding: 0 var(--spacing-lg);
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-label {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: var(--color-blue-subtle);
+            border: 1px solid var(--color-blue-primary);
+            border-radius: var(--radius-full);
+            color: var(--color-blue-light);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-lg);
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.9;
+            letter-spacing: 0.02em;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(180deg, var(--color-white) 0%, var(--color-gray-400) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+            position: relative;
+        }
+
+        .hero-title-highlight {
+            background: linear-gradient(135deg, var(--color-blue-primary), var(--color-blue-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            color: var(--color-gray-400);
+            font-weight: 400;
+            margin-bottom: var(--spacing-xl);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.8s backwards;
+        }
+
+        .hero-cta-primary {
+            padding: var(--spacing-md) var(--spacing-xl);
+            background: linear-gradient(135deg, var(--color-blue-primary), var(--color-blue-dark));
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all var(--transition-smooth);
+            border: 2px solid transparent;
+            box-shadow: var(--shadow-blue);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .hero-cta-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px var(--color-blue-glow);
+            border-color: var(--color-blue-light);
+        }
+
+        .hero-cta-secondary {
+            padding: var(--spacing-md) var(--spacing-xl);
+            background: transparent;
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all var(--transition-smooth);
+            border: 2px solid var(--color-gray-700);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .hero-cta-secondary:hover {
+            background: var(--color-gray-900);
+            border-color: var(--color-gray-600);
+            transform: translateY(-2px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: var(--spacing-xl);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--color-gray-500);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 1s backwards;
+        }
+
+        .scroll-indicator-icon {
+            width: 24px;
+            height: 40px;
+            border: 2px solid var(--color-gray-700);
+            border-radius: var(--radius-full);
+            position: relative;
+        }
+
+        .scroll-indicator-icon::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: var(--color-blue-primary);
+            border-radius: var(--radius-full);
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(-50%) translateY(12px);
+                opacity: 0.3;
+            }
+        }
+
+        /* ==================== PROJECTS SECTION ==================== */
+        .projects-section {
+            position: relative;
+            padding: var(--spacing-4xl) var(--spacing-lg);
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: var(--color-gray-900);
+            border: 1px solid var(--color-gray-800);
+            border-radius: var(--radius-full);
+            color: var(--color-blue-primary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(180deg, var(--color-white) 0%, var(--color-gray-500) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--color-gray-400);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-3xl);
+        }
+
+        .project-card {
+            position: relative;
+            background: var(--color-gray-900);
+            border: 1px solid var(--color-gray-800);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-blue-primary), var(--color-blue-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-smooth);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--color-blue-subtle), transparent 50%);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--color-blue-primary);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Project Card Content */
+        .project-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: var(--color-gray-800);
+            border: 2px solid var(--color-gray-700);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--color-blue-subtle), transparent);
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .project-card:hover .project-icon-wrapper {
+            transform: scale(1.1) rotate(-5deg);
+            border-color: var(--color-blue-primary);
+            box-shadow: 0 8px 24px var(--color-blue-glow);
+        }
+
+        .project-card:hover .project-icon-wrapper::before {
+            opacity: 1;
+        }
+
+        .project-icon {
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-icon-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: relative;
+            z-index: 1;
+            border-radius: var(--radius-lg);
+        }
+
+        .modal-icon-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: var(--radius-lg);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+        }
+
+        .project-type {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: var(--color-gray-800);
+            border: 1px solid var(--color-gray-700);
+            border-radius: var(--radius-sm);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-blue-light);
+        }
+
+        .project-name {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-xs);
+            transition: color var(--transition-base);
+        }
+
+        .project-card:hover .project-name {
+            color: var(--color-blue-light);
+        }
+
+        .project-stats {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--color-gray-800);
+            margin-top: auto;
+        }
+
+        .project-stat {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 0.8rem;
+            color: var(--color-gray-500);
+            font-weight: 500;
+        }
+
+        .project-stat-icon {
+            font-size: 1rem;
+        }
+
+        .project-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: linear-gradient(135deg, var(--color-blue-primary), var(--color-blue-dark));
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--color-white);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 12px var(--color-blue-glow);
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            position: relative;
+            padding: var(--spacing-3xl) var(--spacing-lg);
+            border-top: 1px solid var(--color-gray-900);
+            background: var(--color-dark);
+        }
+
+        .footer-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            letter-spacing: 0.05em;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-description {
+            color: var(--color-gray-500);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-title {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-white);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            list-style: none;
+        }
+
+        .footer-link {
+            color: var(--color-gray-400);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all var(--transition-base);
+            display: inline-block;
+        }
+
+        .footer-link:hover {
+            color: var(--color-blue-primary);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid var(--color-gray-900);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .footer-copyright {
+            color: var(--color-gray-600);
+            font-size: 0.85rem;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 968px) {
+            :root {
+                --nav-height: 70px;
+                --spacing-3xl: 4rem;
+                --spacing-4xl: 5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: var(--spacing-lg);
+                gap: var(--spacing-md);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all var(--transition-smooth);
+                border-bottom: 1px solid var(--color-gray-900);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-cta-primary,
+            .hero-cta-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ==================== UTILITIES ==================== */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--color-blue-primary), var(--color-blue-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* ==================== PROJECT DETAIL MODAL ==================== */
+        .project-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            overflow-y: auto;
+            padding: var(--nav-height) 0;
+        }
+
+        .project-modal.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 1000px;
+            margin: var(--spacing-xl) auto;
+            padding: var(--spacing-xl);
+            background: var(--color-gray-900);
+            border: 1px solid var(--color-gray-800);
+            border-radius: var(--radius-xl);
+            position: relative;
+            animation: modalSlideIn 0.5s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--spacing-lg);
+            right: var(--spacing-lg);
+            width: 48px;
+            height: 48px;
+            background: var(--color-gray-800);
+            border: 1px solid var(--color-gray-700);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-size: 1.5rem;
+            color: var(--color-gray-400);
+        }
+
+        .modal-close:hover {
+            background: var(--color-blue-primary);
+            border-color: var(--color-blue-primary);
+            color: var(--color-white);
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-gray-800);
+        }
+
+        .modal-icon-wrapper {
+            width: 120px;
+            height: 120px;
+            background: var(--color-gray-800);
+            border: 2px solid var(--color-gray-700);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .modal-icon-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-title-section {
+            flex: 1;
+        }
+
+        .modal-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .modal-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-gray-400);
+            line-height: 1.6;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xl);
+        }
+
+        .modal-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .modal-section-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .modal-text {
+            font-size: 1rem;
+            color: var(--color-gray-400);
+            line-height: 1.7;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .modal-btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: var(--color-gray-800);
+            border: 1px solid var(--color-gray-700);
+            border-radius: var(--radius-md);
+            color: var(--color-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .modal-btn:hover {
+            background: var(--color-blue-primary);
+            border-color: var(--color-blue-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-blue);
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, var(--color-blue-primary), var(--color-blue-dark));
+            border-color: transparent;
+            box-shadow: var(--shadow-blue);
+        }
+
+        .modal-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .modal-stat-card {
+            background: var(--color-gray-800);
+            border: 1px solid var(--color-gray-700);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 120px;
+        }
+
+        .modal-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-blue-primary);
+            font-family: var(--font-heading);
+            line-height: 1.2;
+            margin-bottom: var(--spacing-xs);
+            word-break: break-word;
+        }
+
+        .modal-stat-label {
+            font-size: 0.75rem;
+            color: var(--color-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        .chart-container {
+            background: var(--color-gray-800);
+            border: 1px solid var(--color-gray-700);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+        }
+
+        .chart-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-white);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .growth-chart {
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+
+        .chart-line {
+            stroke: var(--color-blue-primary);
+            stroke-width: 3;
+            fill: none;
+            filter: drop-shadow(0 0 8px var(--color-blue-glow));
+        }
+
+        .chart-area {
+            fill: url(#gradient);
+            opacity: 0.3;
+        }
+
+        .chart-grid-line {
+            stroke: var(--color-gray-700);
+            stroke-width: 1;
+        }
+
+        .chart-label {
+            fill: var(--color-gray-500);
+            font-size: 12px;
+            font-family: var(--font-body);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: var(--spacing-md);
+                padding: var(--spacing-lg);
+            }
+
+            .modal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .modal-icon-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+
+            .modal-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <div class="nav-wrapper">
+        <nav>
+            <a href="#" class="nav-logo">MADEBYLIAM</a>
+            
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <a href="mailto:oneill.liam@icloud.com" class="nav-cta">Get In Touch</a>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <!-- Animated Background -->
+        <div class="hero-background"></div>
+        <div class="hero-orb hero-orb-1"></div>
+        <div class="hero-orb hero-orb-2"></div>
+        <div class="hero-orb hero-orb-3"></div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <span class="hero-label">Personal Portfolio</span>
+            <h1 class="hero-title">
+                MADE<span class="hero-title-highlight">BY</span>LIAM
+            </h1>
+            <p class="hero-subtitle">
+                App Developer & Creator crafting exceptional digital experiences with Flutter, Supabase, and modern web technologies
+            </p>
+            <div class="hero-cta-group">
+                <a href="#projects" class="hero-cta-primary">
+                    View Projects
+                    <span>→</span>
+                </a>
+                <a href="mailto:oneill.liam@icloud.com" class="hero-cta-secondary">
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-indicator-icon"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="projects-section">
+        <div class="section-header">
+            <span class="section-label">Featured Work</span>
+            <h2 class="section-title">Projects</h2>
+            <p class="section-description">
+                A collection of apps and websites built with attention to detail, user experience, and cutting-edge technology
+            </p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Shine Social -->
+            <div class="project-card" data-project="shine-social">
+                <div class="project-icon-wrapper">
+                    <img src="shine-logo.png" alt="Shine Social" class="project-icon-img">
+                </div>
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-name">Shine Social</h3>
+                        <span class="project-type">
+                            <span>📱</span>
+                            iOS App
+                        </span>
+                    </div>
+                    <span class="project-badge">
+                        <span>●</span>
+                        Live
+                    </span>
+                </div>
+                <div class="project-stats">
+                    <span class="project-stat">
+                        <span class="project-stat-icon">🚀</span>
+                        Published
+                    </span>
+                    <span class="project-stat">
+                        <span class="project-stat-icon">⚡</span>
+                        Flutter + Supabase
+                    </span>
+                </div>
+            </div>
+
+            <!-- Spin Spike -->
+            <div class="project-card" data-project="spin-spike">
+                <div class="project-icon-wrapper">
+                    <img src="SpinSpike-02.png" alt="Spin Spike" class="project-icon-img">
+                </div>
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-name">Spin Spike</h3>
+                        <span class="project-type">
+                            <span>🎯</span>
+                            iOS Game
+                        </span>
+                    </div>
+                    <span class="project-badge">
+                        <span>●</span>
+                        Live
+                    </span>
+                </div>
+                <div class="project-stats">
+                    <span class="project-stat">
+                        <span class="project-stat-icon">🎨</span>
+                        Cyberpunk Design
+                    </span>
+                    <span class="project-stat">
+                        <span class="project-stat-icon">🏆</span>
+                        Leaderboards
+                    </span>
+                </div>
+            </div>
+
+            <!-- CodeFlow -->
+            <div class="project-card" data-project="codeflow">
+                <div class="project-icon-wrapper">
+                    <img src="CodeFlowLogo-02.png" alt="CodeFlow" class="project-icon-img">
+                </div>
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-name">CodeFlow</h3>
+                        <span class="project-type">
+                            <span>🌐</span>
+                            Web App
+                        </span>
+                    </div>
+                    <span class="project-badge">
+                        <span>●</span>
+                        Active
+                    </span>
+                </div>
+                <div class="project-stats">
+                    <span class="project-stat">
+                        <span class="project-stat-icon">⚡</span>
+                        Real-time Preview
+                    </span>
+                    <span class="project-stat">
+                        <span class="project-stat-icon">🎯</span>
+                        Student-Focused
+                    </span>
+                </div>
+            </div>
+
+            <!-- Focus Hub -->
+            <div class="project-card" data-project="focus-hub">
+                <div class="project-icon-wrapper">
+                    <img src="focus_hub_logo.png" alt="Focus Hub" class="project-icon-img">
+                </div>
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-name">Focus Hub</h3>
+                        <span class="project-type">
+                            <span>📱</span>
+                            iOS App
+                        </span>
+                    </div>
+                    <span class="project-badge">
+                        <span>●</span>
+                        Beta
+                    </span>
+                </div>
+                <div class="project-stats">
+                    <span class="project-stat">
+                        <span class="project-stat-icon">📊</span>
+                        Multi-feature
+                    </span>
+                    <span class="project-stat">
+                        <span class="project-stat-icon">🎮</span>
+                        Gamified
+                    </span>
+                </div>
+            </div>
+
+            <!-- Learny -->
+            <div class="project-card" data-project="learny">
+                <div class="project-icon-wrapper">
+                    <img src="attendLogo-02.png" alt="Attend" class="project-icon-img">
+                </div>
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-name">Attend</h3>
+                        <span class="project-type">
+                            <span>🎓</span>
+                            iOS App
+                        </span>
+                    </div>
+                    <span class="project-badge">
+                        <span>●</span>
+                        Development
+                    </span>
+                </div>
+                <div class="project-stats">
+                    <span class="project-stat">
+                        <span class="project-stat-icon">🤖</span>
+                        AI-Powered
+                    </span>
+                    <span class="project-stat">
+                        <span class="project-stat-icon">✨</span>
+                        Animated
+                    </span>
+                </div>
+            </div>
+
+            <!-- Made by Liam Portfolio -->
+            <div class="project-card" data-project="portfolio">
+                <div class="project-icon-wrapper">
+                    <img src="madebyliamLogo-01.png" alt="Made by Liam" class="project-icon-img">
+                </div>
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-name">Made by Liam</h3>
+                        <span class="project-type">
+                            <span>🌐</span>
+                            Website
+                        </span>
+                    </div>
+                    <span class="project-badge">
+                        <span>●</span>
+                        You're here!
+                    </span>
+                </div>
+                <div class="project-stats">
+                    <span class="project-stat">
+                        <span class="project-stat-icon">🎨</span>
+                        Minimalist
+                    </span>
+                    <span class="project-stat">
+                        <span class="project-stat-icon">⚡</span>
+                        Fast
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">MADEBYLIAM</div>
+                <p class="footer-description">
+                    Creating exceptional digital experiences through innovative app development and modern web technologies.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home" class="footer-link">Home</a></li>
+                    <li><a href="#projects" class="footer-link">Projects</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-title">Projects</h4>
+                <ul class="footer-links">
+                    <li><a href="#" class="footer-link" onclick="openModal('shine-social-modal'); return false;">Shine Social</a></li>
+                    <li><a href="#" class="footer-link" onclick="openModal('spin-spike-modal'); return false;">Spin Spike</a></li>
+                    <li><a href="#" class="footer-link" onclick="openModal('codeflow-modal'); return false;">CodeFlow</a></li>
+                    <li><a href="#" class="footer-link" onclick="openModal('learny-modal'); return false;">Attend</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4 class="footer-title">Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:oneill.liam@icloud.com" class="footer-link">Email</a></li>
+                    <li><a href="https://github.com/madebyliamm" target="_blank" class="footer-link">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copyright">
+                &copy; 2026 Made by Liam. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- SHINE SOCIAL DETAIL MODAL -->
+    <div id="shine-social-modal" class="project-modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('shine-social-modal')">×</div>
+            
+            <div class="modal-header">
+                <div class="modal-icon-wrapper">
+                    <img src="shine-logo.png" alt="Shine Social" class="modal-icon-img">
+                </div>
+                <div class="modal-title-section">
+                    <h2 class="modal-title">Shine Social</h2>
+                    <p class="modal-subtitle">Location-based social media connecting communities with ephemeral content</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Current Status -->
+                <div class="modal-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                        <h3 class="modal-section-title" style="margin-bottom: 0;">Current Status</h3>
+                        <span style="font-size: 0.85rem; color: var(--color-gray-500);">(last updated: Jan 10)</span>
+                    </div>
+                    <div class="modal-stats-grid">
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">47</div>
+                            <div class="modal-stat-label">Total Users</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">5.0/5</div>
+                            <div class="modal-stat-label">App Store Rating</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">Live</div>
+                            <div class="modal-stat-label">App Status</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Beta Testing -->
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Beta Testing</h3>
+                    <p class="modal-text">
+                        Shine Social is currently in beta testing with friends and early users. The feedback has been overwhelmingly positive, with users loving the local community focus and 24-hour ephemeral content. Mass marketing hasn't started yet, so this is still early-stage growth driven entirely by word of mouth.
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="modal-section">
+                    <div class="modal-buttons">
+                        <a href="https://apps.apple.com/us/app/shine-social/id6754584738" target="_blank" class="modal-btn modal-btn-primary">
+                            <span>📱</span>
+                            Download on App Store
+                        </a>
+                        <a href="shine-TOS.html" class="modal-btn">
+                            <span>📄</span>
+                            Terms of Service
+                        </a>
+                        <a href="shine-PrivPol.html" class="modal-btn">
+                            <span>🔒</span>
+                            Privacy Policy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SPIN SPIKE DETAIL MODAL -->
+    <div id="spin-spike-modal" class="project-modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('spin-spike-modal')">×</div>
+            
+            <div class="modal-header">
+                <div class="modal-icon-wrapper">
+                    <img src="SpinSpike-02.png" alt="Spin Spike" class="modal-icon-img">
+                </div>
+                <div class="modal-title-section">
+                    <h2 class="modal-title">Spin Spike</h2>
+                    <p class="modal-subtitle">Addictive neon cyberpunk arcade game with stunning visuals</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Current Status -->
+                <div class="modal-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                        <h3 class="modal-section-title" style="margin-bottom: 0;">Current Status</h3>
+                        <span style="font-size: 0.85rem; color: var(--color-gray-500);">(last updated: Jan 10)</span>
+                    </div>
+                    <div class="modal-stats-grid">
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">N/A</div>
+                            <div class="modal-stat-label">Total Users</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">N/A</div>
+                            <div class="modal-stat-label">App Store Rating</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">Submitted</div>
+                            <div class="modal-stat-label">App Status</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Development -->
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Development</h3>
+                    <p class="modal-text">
+                        Spin Spike was built in just 2 nights, showcasing how much my development skills have improved. The game features polished neon cyberpunk aesthetics, smooth particle systems, and addictive gameplay mechanics. What used to take weeks now takes days thanks to refined workflows and deeper technical expertise with Flutter.
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="modal-section">
+                    <div class="modal-buttons">
+                        <a href="#" class="modal-btn modal-btn-primary" style="pointer-events: none; opacity: 0.6;">
+                            <span>📱</span>
+                            Download on App Store
+                        </a>
+                        <a href="spinspike-TOS.html" class="modal-btn">
+                            <span>📄</span>
+                            Terms of Service
+                        </a>
+                        <a href="spinspike-PrivPol.html" class="modal-btn">
+                            <span>🔒</span>
+                            Privacy Policy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CODEFLOW DETAIL MODAL -->
+    <div id="codeflow-modal" class="project-modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('codeflow-modal')">×</div>
+            
+            <div class="modal-header">
+                <div class="modal-icon-wrapper">
+                    <img src="CodeFlowLogo-02.png" alt="CodeFlow" class="modal-icon-img">
+                </div>
+                <div class="modal-title-section">
+                    <h2 class="modal-title">CodeFlow</h2>
+                    <p class="modal-subtitle">Modern web-based code editor alternative to CodeHS</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Current Status -->
+                <div class="modal-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                        <h3 class="modal-section-title" style="margin-bottom: 0;">Project Info</h3>
+                        <span style="font-size: 0.85rem; color: var(--color-gray-500);">(last updated: Jan 10)</span>
+                    </div>
+                    <div class="modal-stats-grid">
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">Live</div>
+                            <div class="modal-stat-label">Status</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">2 hours</div>
+                            <div class="modal-stat-label">Build Time</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">Free</div>
+                            <div class="modal-stat-label">Cost</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Development -->
+                <div class="modal-section">
+                    <h3 class="modal-section-title">Development</h3>
+                    <p class="modal-text">
+                        CodeFlow development just started and is in no way finalized yet, but we already have a solid rough draft of the website. The goal is to create a clean, student-friendly alternative to CodeHS with a three-panel layout featuring file management, Monaco editor integration, and live preview capabilities. The current version demonstrates the core concept and interface design.
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="modal-section">
+                    <div class="modal-buttons">
+                        <a href="https://codeflow-17495303.codehs.me/codeflow-home.html" target="_blank" class="modal-btn modal-btn-primary">
+                            <span>🌐</span>
+                            Visit Website
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOCUS HUB DETAIL MODAL -->
+    <div id="focus-hub-modal" class="project-modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('focus-hub-modal')">×</div>
+            
+            <div class="modal-header">
+                <div class="modal-icon-wrapper">
+                    <img src="focus_hub_logo.png" alt="Focus Hub" class="modal-icon-img">
+                </div>
+                <div class="modal-title-section">
+                    <h2 class="modal-title">Focus Hub</h2>
+                    <p class="modal-subtitle">All-in-one productivity app for high school students</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Current Status -->
+                <div class="modal-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                        <h3 class="modal-section-title" style="margin-bottom: 0;">Current Status</h3>
+                        <span style="font-size: 0.85rem; color: var(--color-gray-500);">(last updated: Jan 10)</span>
+                    </div>
+                    <div class="modal-stats-grid">
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">N/A</div>
+                            <div class="modal-stat-label">Total Users</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">N/A</div>
+                            <div class="modal-stat-label">App Store Rating</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">Beta Testing</div>
+                            <div class="modal-stat-label">App Status</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="modal-section">
+                    <h3 class="modal-section-title">About</h3>
+                    <p class="modal-text">
+                        Focus Hub is designed specifically for high school students to track absolutely everything in their lives. From grades and assignments to budget management and fitness goals, Focus Hub brings it all together in one beautiful, easy-to-use app. It's completely free and built with the sole purpose of helping teens stay organized and succeed. The app features task tracking, GPA calculation, workout logging, budget management, and a personalized dashboard to keep students on top of everything that matters.
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="modal-section">
+                    <div class="modal-buttons">
+                        <a href="#" class="modal-btn modal-btn-primary" style="pointer-events: none; opacity: 0.6;">
+                            <span>📱</span>
+                            Download on App Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ATTEND DETAIL MODAL -->
+    <div id="learny-modal" class="project-modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('learny-modal')">×</div>
+            
+            <div class="modal-header">
+                <div class="modal-icon-wrapper">
+                    <img src="attendLogo-02.png" alt="Attend" class="modal-icon-img">
+                </div>
+                <div class="modal-title-section">
+                    <h2 class="modal-title">Attend</h2>
+                    <p class="modal-subtitle">AI-powered study companion with animated mascot motivation</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Current Status -->
+                <div class="modal-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                        <h3 class="modal-section-title" style="margin-bottom: 0;">Current Status</h3>
+                        <span style="font-size: 0.85rem; color: var(--color-gray-500);">(last updated: Jan 10)</span>
+                    </div>
+                    <div class="modal-stats-grid">
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">N/A</div>
+                            <div class="modal-stat-label">Total Users</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">N/A</div>
+                            <div class="modal-stat-label">App Store Rating</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">In Development</div>
+                            <div class="modal-stat-label">App Status</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="modal-section">
+                    <h3 class="modal-section-title">About</h3>
+                    <p class="modal-text">
+                        Attend is an AI-powered study companion designed for students at any level - middle school, high school, or college. The app features an animated minimal circle mascot that motivates users to complete their to-do lists and stay on track with their studies. Log all your assignments and tests, and let the AI generate personalized practice tests and flashcards to help you prepare. With beautiful styling, smooth animations, and intelligent study tools, Attend makes learning engaging and effective. The AI adapts to your learning style and helps you master any subject with custom-generated study materials. Available for $5 on the App Store.
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="modal-section">
+                    <div class="modal-buttons">
+                        <a href="#" class="modal-btn modal-btn-primary" style="pointer-events: none; opacity: 0.6;">
+                            <span>📱</span>
+                            Download on App Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MADE BY LIAM PORTFOLIO MODAL -->
+    <div id="portfolio-modal" class="project-modal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal('portfolio-modal')">×</div>
+            
+            <div class="modal-header">
+                <div class="modal-icon-wrapper">
+                    <img src="madebyliamLogo-01.png" alt="Made by Liam" class="modal-icon-img">
+                </div>
+                <div class="modal-title-section">
+                    <h2 class="modal-title">Made by Liam</h2>
+                    <p class="modal-subtitle">Personal portfolio showcasing mobile and web development projects</p>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Project Info -->
+                <div class="modal-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                        <h3 class="modal-section-title" style="margin-bottom: 0;">Project Info</h3>
+                        <span style="font-size: 0.85rem; color: var(--color-gray-500);">(last updated: Jan 10)</span>
+                    </div>
+                    <div class="modal-stats-grid">
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">Live</div>
+                            <div class="modal-stat-label">Status</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">3 hours</div>
+                            <div class="modal-stat-label">Build Time</div>
+                        </div>
+                        <div class="modal-stat-card">
+                            <div class="modal-stat-value">Free</div>
+                            <div class="modal-stat-label">Cost</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About -->
+                <div class="modal-section">
+                    <h3 class="modal-section-title">About</h3>
+                    <p class="modal-text">
+                        This portfolio website showcases my journey as an app developer and creator. Built with pure HTML, CSS, and JavaScript - no frameworks, just clean code and smooth animations. The minimalist black, white, and blue aesthetic puts the focus on the projects themselves. Each project card features interactive hover effects, and detailed modals provide deeper insights into the development process, features, and current status of each app. The site demonstrates both technical capability and design sensibility, reflecting the same attention to detail that goes into every app I build.
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="modal-section">
+                    <div class="modal-buttons">
+                        <a href="#home" class="modal-btn modal-btn-primary" onclick="closeModal('portfolio-modal')">
+                            <span>🌐</span>
+                            Go to Website
+                        </a>
+                        <a href="#projects" class="modal-btn" onclick="closeModal('portfolio-modal')">
+                            <span>🚀</span>
+                            View Projects
+                        </a>
+                        <a href="mailto:oneill.liam@icloud.com" class="modal-btn">
+                            <span>✉️</span>
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // ==================== NAVIGATION ==================== 
+        const nav = document.querySelector('.nav-wrapper');
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinkItems = document.querySelectorAll('.nav-link');
+
+        // Scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Mobile menu toggle
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLinkItems.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // ==================== PROJECT CARDS ====================
+        const projectCards = document.querySelectorAll('.project-card');
+
+        projectCards.forEach(card => {
+            // Add click handler
+            card.addEventListener('click', () => {
+                const projectId = card.getAttribute('data-project');
+                const modalId = `${projectId}-modal`;
+                const modal = document.getElementById(modalId);
+                
+                if (modal) {
+                    // Open the modal if it exists
+                    openModal(modalId);
+                } else {
+                    // Navigate to project detail page for projects without modals
+                    window.location.href = `#${projectId}`;
+                }
+                
+                // Add click animation
+                card.style.transform = 'scale(0.98) translateY(-8px)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 150);
+            });
+
+            // Mouse move effect for card glow
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / card.offsetWidth) * 100;
+                const y = ((e.clientY - rect.top) / card.offsetHeight) * 100;
+                
+                card.style.setProperty('--mouse-x', `${x}%`);
+                card.style.setProperty('--mouse-y', `${y}%`);
+            });
+        });
+
+        // ==================== MODAL FUNCTIONS ====================
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside content
+        document.querySelectorAll('.project-modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.project-modal.active').forEach(modal => {
+                    closeModal(modal.id);
+                });
+            }
+        });
+
+        // ==================== SMOOTH SCROLL ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    const offsetTop = target.offsetTop - 80;
+                    
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ==================== INTERSECTION OBSERVER ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe project cards for scroll animations
+        projectCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // ==================== PARALLAX EFFECT ====================
+        const hero = document.querySelector('.hero');
+        const heroOrbs = document.querySelectorAll('.hero-orb');
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroHeight = hero.offsetHeight;
+            
+            if (scrolled < heroHeight) {
+                heroOrbs.forEach((orb, index) => {
+                    const speed = 0.1 + (index * 0.05);
+                    orb.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            }
+        });
+
+        // ==================== MOUSE PARALLAX ====================
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            heroOrbs.forEach((orb, index) => {
+                const speed = 20 + (index * 10);
+                const x = (mouseX - 0.5) * speed;
+                const y = (mouseY - 0.5) * speed;
+                
+                orb.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // ==================== PERFORMANCE ====================
+        // Preload critical fonts
+        if ('fonts' in document) {
+            Promise.all([
+                document.fonts.load('700 1em "Bebas Neue"'),
+                document.fonts.load('400 1em "Montserrat"'),
+                document.fonts.load('700 1em "Archivo"')
+            ]).then(() => {
+                document.body.classList.add('fonts-loaded');
+            });
+        }
+
+        // Lazy load images (if you add them later)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // ==================== CONSOLE MESSAGE ====================
+        console.log('%c👋 Hey there!', 'font-size: 2em; color: #3b82f6; font-weight: bold;');
+        console.log('%cLooking at the code? Check out the projects section to see what else I\'ve built!', 'font-size: 1.2em; color: #ffffff;');
+    </script>
+</body>
+</html>

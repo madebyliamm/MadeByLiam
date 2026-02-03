@@ -94,48 +94,109 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            height: 75vh;
+            min-height: 600px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Tech grid background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(rgba(0, 212, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.4;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
         }
 
         .hero-title {
             font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: clamp(2.5rem, 8vw, 7rem);
-            letter-spacing: -0.02em;
+            font-weight: 700;
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            letter-spacing: -0.03em;
             line-height: 1;
-            margin-bottom: 1.5rem;
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
-            white-space: nowrap;
+            animation: fadeUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+            text-align: center;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
             font-weight: 400;
             color: var(--text-muted);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+            transform: translateY(20px);
+            animation: fadeUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
         }
 
+        /* Floating geometric shapes */
         .hero-bg {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             pointer-events: none;
-            animation: pulse 4s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .hero-shape {
+            position: absolute;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-shape:nth-child(1) {
+            width: 150px;
+            height: 150px;
+            top: 15%;
+            left: 10%;
+            border-radius: 50%;
+        }
+
+        .hero-shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            bottom: 20%;
+            right: 12%;
+            animation-delay: -7s;
+        }
+
+        .hero-shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            top: 50%;
+            left: 75%;
+            transform: rotate(45deg);
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+            50% { transform: translateY(-20px) rotate(5deg); opacity: 0.4; }
         }
 
         .scroll-indicator {
@@ -685,15 +746,21 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="logo">MADE BY LIAM</div>
+        <div class="logo">LIAM O'NEILL</div>
         <button class="contact-btn">Contact</button>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-bg"></div>
-        <h1 class="hero-title">MADE BY LIAM</h1>
-        <p class="hero-subtitle">Personal portfolio</p>
+        <div class="hero-bg">
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+            <div class="hero-shape"></div>
+        </div>
+        <div class="hero-container">
+            <h1 class="hero-title">LIAM O'NEILL</h1>
+            <p class="hero-subtitle">Personal Portfolio</p>
+        </div>
         <div class="scroll-indicator" id="scrollIndicator">
             <div class="scroll-arrow"></div>
         </div>

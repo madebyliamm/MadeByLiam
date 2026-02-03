@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Made by Liam</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -24,7 +23,7 @@
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: 'DM Sans', -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -51,8 +50,8 @@
         }
 
         .logo {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 600;
             font-size: 1.2rem;
             letter-spacing: -0.02em;
         }
@@ -130,8 +129,8 @@
         }
 
         .hero-title {
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-weight: 600;
             font-size: clamp(3.5rem, 10vw, 8rem);
             letter-spacing: -0.03em;
             line-height: 1;
@@ -258,7 +257,7 @@
         }
 
         .section-title {
-            font-family: 'Syne', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-weight: 700;
             font-size: clamp(2rem, 5vw, 3.5rem);
             margin-bottom: 4rem;
@@ -319,6 +318,7 @@
             aspect-ratio: 16/10;
             background: var(--surface);
             border: 1px solid var(--border);
+            border-radius: 12px;
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
@@ -326,10 +326,15 @@
             color: var(--text-muted);
             font-size: 0.85rem;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .project-placeholder img {
+            border-radius: 12px;
         }
 
         .project-name {
-            font-family: 'Syne', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
@@ -438,7 +443,7 @@
         }
 
         .workflow-stage-number {
-            font-family: 'Syne', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-size: 8rem;
             color: var(--accent);
             font-weight: 800;
@@ -448,7 +453,7 @@
         }
 
         .workflow-stage-title {
-            font-family: 'Syne', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
@@ -767,7 +772,7 @@
         }
 
         .modal-title {
-            font-family: 'Syne', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 2rem;
